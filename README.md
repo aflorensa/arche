@@ -4,6 +4,9 @@ Archetyper
 
 This project aims to build apps easy and fast
 
-https://www.npmjs.com/package/replace-in-file
+uses:
+-----
+
+[replace-in-file node tool](https://www.npmjs.com/package/replace-in-file)
 
 

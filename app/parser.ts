@@ -10,16 +10,8 @@ export class Parser {
     }
 
     public parse(options: any): Array<string>  {
-        let changes: Array<string>;
         options.files=this.path+options.files;
-
-        try {
-            changes = replace.sync(options);
-            console.log('Modified files:', changes.join(', '));
-        }
-        catch (error) {
-            console.error('Error occurred:', error);
-        }
+        let changes: Array<string> = replace.sync(options);
         return changes;
     }
 
