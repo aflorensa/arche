@@ -1,5 +1,5 @@
 {
-  "name": "Archetyping tool for justdigital",
+  "name": "archetyping-archetyper",
   "version": "1.4.0",
   "description": "this project aims to build seed projects from existing justdigital seeds",
   "main": "index.js",
@@ -31,7 +31,8 @@
     ],
     "exclude": [
       "**/*.d.ts",
-      "test/**"
+      "test/**/*.*",
+      "test/resources/sampleLanguages"
     ],
     "require": [
       "ts-node/register"

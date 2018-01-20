@@ -17,10 +17,10 @@ describe("Parser", () => {
         it("should process regexp", () => {
             let actual = sut.parse({
                 "files": "conf/application.conf",
-                "from": "[:]\\s(\\\".*\\\")" ,
+                "from": /[A-Za-z-]+/g ,
                 "to": "patata"
             });
-            expect(actual).to.equal({});
+            expect(actual[0]).to.equal("./test/resources/fakeProjects/playframework_tmp/conf/application.conf");
         });
 
         it("should process simple substitution", () => {

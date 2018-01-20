@@ -1,11 +1,9 @@
 
-Kata Seed - TypeScript and Mocha
+Archetyper
 ================================
 
-This is a seed project for doing TDD code katas in TypeScript.
+This project aims to build apps easy and fast
 
-Setup:
-   * `npm install`
+https://www.npmjs.com/package/replace-in-file
 
-Run unit tests:
-   * `npm test`
+
