@@ -1,0 +1,13 @@
+[
+  {
+    "files": "conf/application.conf",
+    "from": "[:]\s(\".*\")" ,
+    "to": "patata"
+  },
+  {
+    "files": "path/to/file",
+    "from": "/SomePattern[A-Za-z-]+/g" ,
+    "to": "(match) => match.toLowerCase()"
+  }
+
+]
