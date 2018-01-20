@@ -4,9 +4,10 @@ import * as fse from "fs-extra";
 
 describe("Parser", () => {
 
-    describe("parse", () => {
+    describe("parse application.conf", () => {
 
         let sut;
+        let expected = "./test/resources/fakeProjects/playframework_tmp/conf/application.conf";
 
         beforeEach(function () {
             fse.copySync("./test/resources/fakeProjects/playframework", "./test/resources/fakeProjects/playframework_tmp");
@@ -20,7 +21,7 @@ describe("Parser", () => {
                 "from": /[A-Za-z-]+/g ,
                 "to": "patata"
             });
-            expect(actual[0]).to.equal("./test/resources/fakeProjects/playframework_tmp/conf/application.conf");
+            expect(actual[0]).to.equal(expected);
         });
 
         it("should process simple substitution", () => {
@@ -29,8 +30,18 @@ describe("Parser", () => {
                 "from": "default" ,
                 "to": "patata"
             });
-            expect(actual[0]).to.equal("./test/resources/fakeProjects/playframework_tmp/conf/application.conf");
+            expect(actual[0]).to.equal(expected);
         });
+
+        it("should process non matching substitution", () => {
+            let actual:Array<string> = sut.parse({
+                "files": "conf/application.conf",
+                "from": "asdfasdf" ,
+                "to": "patata"
+            });
+            expect(actual.length).to.equal(0);
+        });
+
     });
 
 

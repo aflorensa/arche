@@ -1,7 +1,7 @@
 [
   {
     "files": "conf/application.conf",
-    "from": "[:]\s(\".*\")" ,
+    "from": "default" ,
     "to": "patata"
   },
   {
