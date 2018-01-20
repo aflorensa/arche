@@ -4,7 +4,7 @@ import * as fse from "fs-extra";
 
 describe("Parser", () => {
 
-    describe("parse application.conf", () => {
+    describe("parse conf/application.conf", () => {
 
         let sut;
         let expected = "./test/resources/fakeProjects/playframework_tmp/conf/application.conf";
@@ -15,30 +15,27 @@ describe("Parser", () => {
 
         });
 
-        it("should process regexp", () => {
+        let exerciseParse = function(from: any) {
             let actual = sut.parse({
                 "files": "conf/application.conf",
-                "from": /[A-Za-z-]+/g ,
+                "from": from,
                 "to": "patata"
             });
+            return actual;
+        };
+
+        it("should process regexp", () => {
+            let actual = exerciseParse(/[A-Za-z-]+/g);
             expect(actual[0]).to.equal(expected);
         });
 
         it("should process simple substitution", () => {
-            let actual:Array<string> = sut.parse({
-                "files": "conf/application.conf",
-                "from": "default" ,
-                "to": "patata"
-            });
+            let actual = exerciseParse("default");
             expect(actual[0]).to.equal(expected);
         });
 
         it("should process non matching substitution", () => {
-            let actual:Array<string> = sut.parse({
-                "files": "conf/application.conf",
-                "from": "asdfasdf" ,
-                "to": "patata"
-            });
+            let actual = exerciseParse("asdfasdf");
             expect(actual.length).to.equal(0);
         });
 
