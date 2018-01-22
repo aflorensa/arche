@@ -1,13 +1,22 @@
-[
-  {
-    "files": "conf/application.conf",
-    "from": "default" ,
-    "to": "patata"
+{
+  "title":"Generic API backend",
+  "repository": {
+    "url": "https:\/\/github.com\/medeasolution\/tramit-api.git",
+    "branch": "master",
+    "tag": "init"
   },
-  {
-    "files": "path/to/file",
-    "from": "/SomePattern[A-Za-z-]+/g" ,
-    "to": "(match) => match.toLowerCase()"
-  }
+  "tags":["playframework"],
+  "transformations": [
+    {
+      "files": "conf/application.conf",
+      "from": "default",
+      "to": "patata"
+    },
+    {
+      "files": "path/to/file",
+      "from": "/SomePattern[A-Za-z-]+/g",
+      "to": "(match) => match.toLowerCase()"
+    }
+  ]
 
-]
+}
