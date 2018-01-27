@@ -9,13 +9,13 @@
   "transformations": [
     {
       "files": "package.json",
-      "from": "default",
-      "to": "patata"
+      "from": "\"name\": \".*\"",
+      "to": "\"name\": \"new-project\""
     },
     {
-      "files": "path/to/file",
-      "from": "/SomePattern[A-Za-z-]+/g",
-      "to": "(match) => match.toLowerCase()"
+      "files": "README.md",
+      "from": "/[A-Za-z-]+/g",
+      "to": "\"name\": \"new-project\""
     }
   ]
 

@@ -1,21 +1,42 @@
-// import { Promise } from "es6-shim";
-import * as fs from "fs-extra";
+import {IArchetyper} from "./IArchetyper";
+import {Repository} from "./repository";
+import {Parser} from "./parser";
 
-// var fse = require("fs-extra");
-// var jadeInline = require('node-file-to-string')();
 
-export class Arquetyper {
+export class Arquetyper implements IArchetyper {
+    rule: any;
 
-    // private name: string;
-    // private extension: string;
-    private content: Array<string>;
-
-    constructor(path: string) {
-        this.content = fs.readFileSync(path, "utf8").split("\n");
+    constructor(rule: any = {}) {
+        this.rule = rule;
     }
 
-    public getContent(): Array<string> {
-        return this.content;
+    public createFromSeed(){
+        this.clone();
+        this.parse(this.rule.transformations);
+    }
+
+    promptForData() {
+        throw new Error('Method not implemented.');
+    }
+
+    parse(transformations: any = {}): Array<string> {
+        let results: Array<string> = new Array;
+        let parser = new Parser(this.rule.destination+"/"+this.rule.name);
+        transformations.map(function(json){
+            let message = parser.parse(json);
+            results.push(message.pop())
+        });
+        return results;
+    }
+
+    compile(): string {
+        throw new Error('Method not implemented.');
+    }
+
+    clone(): string {
+        let repository = new Repository(this.rule);
+        repository.reset();
+        return repository.clone();
     }
 
 }

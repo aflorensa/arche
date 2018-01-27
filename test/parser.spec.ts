@@ -41,6 +41,24 @@ describe("Parser", () => {
 
     });
 
+    describe("parse package.json", () => {
 
+        let sut;
+        let expected = "./test/resources/fakeProjects/node_tmp/package.json";
 
+        beforeEach(function () {
+            fse.copySync("./test/resources/fakeProjects/nodejs", "./test/resources/fakeProjects/node_tmp");
+            sut = new Parser("./test/resources/fakeProjects/node_tmp/");
+        });
+
+        it("should process node name", () => {
+            let actual = sut.parse({"files": "package.json","from": /"name": ".*"/g ,"to": "\"name\": \"new-project\""});
+            expect(actual[0]).to.equal(expected);
+        });
+
+        it("should parse regexp in string", () => {
+            let actual = sut.parse({"files": "package.json","from": "\"name\": \".*\"" ,"to": "\"name\": \"new-project\""});
+            expect(actual[0]).to.equal(expected);
+        });
+    });
 });

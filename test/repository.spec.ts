@@ -9,13 +9,13 @@ describe("Repository", () => {
 
     beforeEach(() => {
         let data = JSON.parse(fs.readFileSync("./test/resources/sample.json", "utf8"));
-        sut = new Repository(data,"test-project");
+        sut = new Repository(data);
         sut.reset();
     });
 
     it("should clone", (done) => {
         let actual = sut.clone(done);
-        expect(actual).to.equal(".//test-project");
+        expect(actual).to.equal("./tmp/test-project");
     });
 
 });
