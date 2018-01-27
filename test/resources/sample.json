@@ -16,8 +16,8 @@
     },
     {
       "files": "README.md",
-      "from": "/[A-Za-z-]+/g",
-      "to": "\"name\": \"new-project\""
+      "from": "[A-Za-z-]+",
+      "to": "patata"
     }
   ]
 
