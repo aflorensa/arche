@@ -1,6 +1,7 @@
 import { Promise } from "es6-shim";
 import * as shell from 'shelljs';
 import * as fs from "fs-extra";
+import * as path from "path";
 
 export class Repository {
 
@@ -21,6 +22,10 @@ export class Repository {
         let command = "cd "+this.rule.destination+" && git clone " + this.rule.repository.url + " " + this.rule.name;
         if (shell.exec(command).code == 0) {
             // stuff here
+        }
+        let fullpath = path.join(this.rule.destination, this.rule.name,'.git');
+        if(fs.existsSync(fullpath)){
+            fs.removeSync(fullpath);
         }
         return this.projectPath;
         // Promise.resolve([1, 2, 3]);
