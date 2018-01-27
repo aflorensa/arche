@@ -78,5 +78,17 @@ describe("Parser", () => {
             });
         });
 
+        describe("usages  ", () => {
+            beforeEach(function () {
+                fse.copySync("./test/resources/fakeProjects/nodejs", "./test/resources/fakeProjects/node_tmp");
+                var model = {"name":"wilfred"};
+                sut = new Parser("./test/resources/fakeProjects/node_tmp/",model);
+            });
+            it("check array", () => {
+                let actual = sut.parse({"files": "package.json","from":["true","dependencies"] ,"to": ["parata","asdf"]});
+                expect(actual[0]).to.equal(expected);
+            });
+        });
+
     });
 });

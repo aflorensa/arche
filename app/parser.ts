@@ -15,7 +15,7 @@ export class Parser {
 
 
     public sanityze(options: any):any {
-        if (options.to.match(/\[\[\[([^)]+)\]\]\]/)) {
+        if (!Array.isArray(options.to) && options.to.match(/\[\[\[([^)]+)\]\]\]/)) {
             let to = options.to.match(/\[\[\[([^)]+)\]\]\]/)[1];
             if (this.model[to]) {
                 options.to = this.model[to];
@@ -25,6 +25,7 @@ export class Parser {
             }
 
         }
+        if (Array.isArray(options.from)) return options;
         if (options.from.constructor.name === "RegExp") return options;
         options.from = new RegExp(options.from,"g");
         return options;

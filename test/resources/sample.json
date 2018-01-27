@@ -21,7 +21,7 @@
     },
     {
       "files": "src/index.html",
-      "from": ["Hello World"],
+      "from": ["Hello World","Hello world"],
       "to": "[[[name]]]"
     }
 
