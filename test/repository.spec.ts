@@ -1,5 +1,6 @@
 import { Repository } from "../app/repository";
 import * as fs from "fs-extra";
+import {expect} from 'chai';
 
 
 describe("Repository", () => {
@@ -12,8 +13,9 @@ describe("Repository", () => {
         sut.reset();
     });
 
-    it("should clone", () => {
-        sut.clone();
+    it("should clone", (done) => {
+        let actual = sut.clone(done);
+        expect(actual).to.equal(".//test-project");
     });
 
 });
