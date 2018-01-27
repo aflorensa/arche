@@ -10,3 +10,10 @@ uses:
 [replace-in-file node tool](https://www.npmjs.com/package/replace-in-file)
 
 
+Generated new project should
+----------------------------
+
+1. create github repository
+2. create project with parameterized data from seed repo
+3. add project to jenkins
+

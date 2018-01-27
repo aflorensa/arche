@@ -1,0 +1,22 @@
+{
+  "title":"Generic API backend",
+  "repository": {
+    "url": "https:\/\/github.com\/medeasolution\/play-ebean.git",
+    "branch": "master",
+    "tag": "init"
+  },
+  "tags":["playframework"],
+  "transformations": [
+    {
+      "files": "conf/application.conf",
+      "from": "default",
+      "to": "patata"
+    },
+    {
+      "files": "path/to/file",
+      "from": "/SomePattern[A-Za-z-]+/g",
+      "to": "(match) => match.toLowerCase()"
+    }
+  ]
+
+}

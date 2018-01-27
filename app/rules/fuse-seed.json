@@ -1,0 +1,22 @@
+{
+  "title":"fuse-seed",
+  "repository": {
+    "url": "https:\/\/github.com\/medeasolution\/fuse-seed.git",
+    "branch": "master",
+    "tag": "init"
+  },
+  "tags":["angularjs"],
+  "transformations": [
+    {
+      "files": "package.json",
+      "from": "default",
+      "to": "patata"
+    },
+    {
+      "files": "path/to/file",
+      "from": "/SomePattern[A-Za-z-]+/g",
+      "to": "(match) => match.toLowerCase()"
+    }
+  ]
+
+}
