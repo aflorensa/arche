@@ -10,16 +10,15 @@ describe("Archetyper", () => {
     beforeEach(() => {
         data = JSON.parse(fs.readFileSync("./test/resources/sample.json", "utf8"));
         sut = new Arquetyper(data);
-
-    });
-
-    it("should clone", (done) => {
-        sut.createFromSeed();
     });
 
     it("should parse", (done) => {
+        sut.createFromSeed();
+
         let actual : Array<string>  = sut.parse(data.transformations);
         expect(actual.length).to.equal(2);
+
+        done();
     });
 
 });
