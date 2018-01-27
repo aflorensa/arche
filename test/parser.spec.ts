@@ -60,5 +60,23 @@ describe("Parser", () => {
             let actual = sut.parse({"files": "package.json","from": "\"name\": \".*\"" ,"to": "\"name\": \"new-project\""});
             expect(actual[0]).to.equal(expected);
         });
+
+
+        describe("with model indirection in 'to' ", () => {
+            beforeEach(function () {
+                fse.copySync("./test/resources/fakeProjects/nodejs", "./test/resources/fakeProjects/node_tmp");
+                var model = {"name":"wilfred"};
+                sut = new Parser("./test/resources/fakeProjects/node_tmp/",model);
+            });
+            it("should parse vars with [[[]]]", () => {
+                let actual = sut.parse({"files": "package.json","from":"true" ,"to": "[[[name]]]"});
+                expect(actual[0]).to.equal(expected);
+            });
+            it("should work with non existing vars in model", () => {
+                let actual = sut.parse({"files": "package.json","from":"true" ,"to": "[[[nonexisting]]]"});
+                expect(actual[0]).to.equal(undefined);
+            });
+        });
+
     });
 });

@@ -4,7 +4,7 @@
 
 export interface IArchetyper {
 
-    promptForData():any;
+    retrieveModel(rule: any):any;
     clone():string;
     parse(transformations: any): Array<string>;
     compile():string;

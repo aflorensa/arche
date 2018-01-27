@@ -3,10 +3,7 @@ import * as replace from 'replace-in-file';
 
 export class Parser {
 
-    private path: string;
-
-    constructor(path: string = "./") {
-        this.path = path;
+    constructor(private path: string = "./", private model: any = {}) {
     }
 
     public parse(options: any): Array<string>  {
@@ -18,12 +15,19 @@ export class Parser {
 
 
     public sanityze(options: any):any {
+        if (options.to.match(/\[\[\[([^)]+)\]\]\]/)) {
+            let to = options.to.match(/\[\[\[([^)]+)\]\]\]/)[1];
+            if (this.model[to]) {
+                options.to = this.model[to];
+                console.log("match "+options.to +"["+to);
+            } else {
+                options.to=options.from;
+            }
+
+        }
         if (options.from.constructor.name === "RegExp") return options;
         options.from = new RegExp(options.from,"g");
         return options;
-        // let from = (options.regexp) ? new RegExp(options.from, 'g') : options.from;
-        // let json = this.stringify(options);
-        // options = this.jsonparse(json);
     }
 
     public stringify(obj){
@@ -47,8 +51,6 @@ export class Parser {
             } else if(obj[i].type == "String"){
                 objectified[i] = obj[i].value
             } else if(obj[i].type == "Function"){
-                // WARNING: this is more or less like using eval
-                // All the usual caveats apply - including jailtime
                 objectified[i] = new Function("return ("+obj[i].value+")")();
             }
 
