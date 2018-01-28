@@ -112,6 +112,7 @@ npm run compile && npm run start  (copy rules folder to dist)
 7. deploy modules programatically to seed apps
 8. handle git permissions
 9. Rather than only **transformations** add other types of interaction, for instance (generations, logic flow, icons, etc...)
+10. reporting tool to inform about the process
 
 The main goal is create an application mobile-frontend-backoffice-api like we would do by coding.
 
