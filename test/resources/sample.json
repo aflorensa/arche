@@ -1,5 +1,6 @@
 {
   "title":"webapp-seed",
+  "description":"some description here",
   "name":"test-project",
   "destination":"./tmp",
   "repository": {
