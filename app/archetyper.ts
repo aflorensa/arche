@@ -1,27 +1,30 @@
 import {IArchetyper} from "./IArchetyper";
 import {Repository} from "./repository";
 import {Parser} from "./parser";
+import {Metadata} from "./Metadata";
 
 
 export class Arquetyper implements IArchetyper {
     private model: any;
 
-    constructor(private rule: any = {}) {
+    constructor(rule: any = {}) {
+        this.model = rule;
     }
 
     public createFromSeed(){
+        this.model=this.retrieveModel();
         this.clone();
-        this.model=this.retrieveModel(this.rule);
-        this.parse(this.rule.transformations);
+        this.parse(this.model.transformations);
     }
 
-    retrieveModel(rule: any = {}):any {
-        return {"name":rule.name};
+    retrieveModel():any {
+        let metadata = new Metadata();
+        return metadata.getArchetypeModel();
     }
 
     parse(transformations: any = {}): Array<string> {
         let results: Array<string> = new Array;
-        let parser = new Parser(this.rule.destination+"/"+this.rule.name, this.model);
+        let parser = new Parser(this.model);
         transformations.map(function(json){
             let message = parser.parse(json);
             results.push(message.pop())
@@ -34,7 +37,7 @@ export class Arquetyper implements IArchetyper {
     }
 
     clone(): string {
-        let repository = new Repository(this.rule);
+        let repository = new Repository(this.model);
         repository.reset();
         return repository.clone();
     }

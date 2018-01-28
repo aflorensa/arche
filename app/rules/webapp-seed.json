@@ -1,11 +1,12 @@
 {
-  "title":"webapp-seed",
+  "title":"front-end-angular-web",
+  "description": "Frontend angular web",
   "repository": {
     "url": "https:\/\/github.com\/medeasolution\/webapp-seed.git",
     "branch": "master",
     "tag": "init"
   },
-  "tags":["angularjs"],
+  "tags":["angularjs", "front"],
   "transformations": [
     {
       "files": "package.json",
@@ -14,8 +15,13 @@
     },
     {
       "files": "README.md",
-      "from": "/[A-Za-z-]+/g",
-      "to": "\"name\": \"new-project\""
+      "from": "[A-Za-z-]+",
+      "to": "patata"
+    },
+    {
+      "files": "src/index.html",
+      "from": ["Hello World","Hello world"],
+      "to": "[[[name]]]"
     }
   ]
 

@@ -1,46 +1,67 @@
-import * as inquirer from "inquirer";
+import * as PromptSync from "prompt-sync";
+import * as Config from "prompt-sync";
+import {Prompt} from "prompt-sync";
+import * as fs from "fs-extra";
+import * as path from "path";
+import * as shell from 'shelljs';
+import * as chalk from "chalk";
+import * as figlet from "figlet";
+
 
 export class Metadata {
 
-
+    prompt: Prompt;
 
     constructor(private rule: any = {}) {
+        this.prompt = PromptSync(Config);
     }
 
-    getArchetypeModel(answers:any):any{
+    getArchetypeModel():any{
+        var options:Array<Object> = this.getArchetypesList();
+        this.printRuleOptions(options);
+        var artifact = this.prompt(">");
+        if (isNaN(parseInt(artifact)) || parseInt(artifact)>=options.length) this.exitMierder();
+        var name = this.prompt("Nombre del proyecto: ");
+        if (name=="") this.exitMierder();
+        var destination = this.prompt("Carpeta destino: ("+__dirname+")",__dirname);
+        if (destination=="") this.exitMierder();
 
-        var questions = [
-            {
-                type: 'input',
-                name: 'first_name',
-                message: "What's your first name"
-            },
-            {
-                type: 'input',
-                name: 'last_name',
-                message: "What's your last name",
-                default: function() {
-                    return 'Doe';
-                }
-            },
-            {
-                type: 'input',
-                name: 'phone',
-                message: "What's your phone number",
-                validate: function(value) {
-                    var pass = value.match(
-                        /^([01]{1})?[-.\s]?\(?(\d{3})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})\s?((?:#|ext\.?\s?|x\.?\s?){1}(?:\d+)?)?$/i
-                    );
-                    if (pass) {
-                        return true;
-                    }
+        var json = fs.readJsonSync(options[parseInt(artifact)]['file']);
+        json.name=name;
+        json.destination=destination;
+        return json;
+    }
 
-                    return 'Please enter a valid phone number';
-                }
-            }
-        ];
+    getArchetypesList():Array<Object> {
+        var archetypeList:Array<Object> = Array();
+        let rulesDir = path.join(__dirname, 'rules');
+        let id=0;
+        if(fs.existsSync(rulesDir)){
+            fs.readdirSync(rulesDir).forEach(file => {
+                let filePath = path.join(rulesDir, file);
+                var json = fs.readJsonSync(filePath);
+                archetypeList.push({"id":id,"file":filePath,"title":json.title,"description":json.description});
+                id++;
+            });
+        }
+        return archetypeList;
+    }
 
-        inquirer.prompt(questions).then(answers);
+    printRuleOptions(rules: Array<Object>){
+        console.log("Elije entre estos proyectos:\n");
+        rules.forEach(rule => {
+            console.log(rule['id']+") "+rule['title']+" ["+rule['description']+"]");
+        });
+    }
+
+    exitMierder(){
+        console.log(
+            chalk.yellow(
+                figlet.textSync('CAPULLO', { horizontalLayout: 'full' })
+            )
+        );
+        console.log("\na la mierda por retarded.\n");
+        shell.exit(0);
     }
 
 }

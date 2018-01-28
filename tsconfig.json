@@ -24,7 +24,7 @@
     ],
     "include": [
         "./app/rules/*.json",
-        "./index.js",
+        "./index.ts",
         "./app/**/*.ts"
     ]
 }

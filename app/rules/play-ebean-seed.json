@@ -1,5 +1,6 @@
 {
   "title":"Generic API backend",
+  "description": "Minimal stuff to prepare a backend, motherfucker.",
   "repository": {
     "url": "https:\/\/github.com\/medeasolution\/play-ebean.git",
     "branch": "master",

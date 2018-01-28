@@ -13,13 +13,38 @@ describe("Metadata", () => {
     });
 
 
-    it("should clone", (done) => {
+    it("getArchetypeModel should ask for metadata", (done) => {
 
-        let actual = sut.getArchetypeModel(function something(answer){
-            console.log(JSON.stringify(answer, null, '  '));
-            done();
-        });
+        let actual = sut.getArchetypeModel();
         expect(actual).to.equal("./tmp/test-project");
     });
+
+    it("getArchetypesList should get array of rules to choose", () => {
+        let actual = sut.getArchetypesList();
+        console.log(actual);
+        expect(actual.length).to.equal(3);
+    });
+
+    it("printRuleOptions should get array of rules to choose", () => {
+        function sample() {
+            return [ { id: 0,
+                file: 'D:\\workspace\\justdigital\\archetypes\\typescript-mocha-kata-seed-master\\app\\rules\\fuse-seed.json',
+                title: 'fuse-seed',
+                description: 'Backoffice with angular 5 and fuse style' },
+                { id: 1,
+                    file: 'D:\\workspace\\justdigital\\archetypes\\typescript-mocha-kata-seed-master\\app\\rules\\play-ebean-seed.json',
+                    title: 'Generic API backend',
+                    description: 'Minimal stuff to prepare a backend, motherfucker.' },
+                { id: 2,
+                    file: 'D:\\workspace\\justdigital\\archetypes\\typescript-mocha-kata-seed-master\\app\\rules\\webapp-seed.json',
+                    title: 'front-end-angular-web',
+                    description: 'Frontend angular web' } ];
+        }
+
+        let actual = sut.printRuleOptions(sample());
+        console.log(actual);
+        expect(actual).to.equal(3);
+    });
+
 
 });

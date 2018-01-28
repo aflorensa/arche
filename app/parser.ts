@@ -2,8 +2,10 @@ import * as fs from "fs";
 import * as replace from 'replace-in-file';
 
 export class Parser {
+    path: string;
 
-    constructor(private path: string = "./", private model: any = {}) {
+    constructor(private model: any = {}) {
+        this.path = this.model.destination+"/"+this.model.name
     }
 
     public parse(options: any): Array<string>  {
@@ -19,7 +21,6 @@ export class Parser {
             let to = options.to.match(/\[\[\[([^)]+)\]\]\]/)[1];
             if (this.model[to]) {
                 options.to = this.model[to];
-                console.log("match "+options.to +"["+to);
             } else {
                 options.to=options.from;
             }
