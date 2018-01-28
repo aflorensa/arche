@@ -56,7 +56,7 @@ export class Metadata {
 
     exitMierder(){
         console.log(
-            chalk.yellow(
+            chalk.black(
                 figlet.textSync('CAPULLO', { horizontalLayout: 'full' })
             )
         );

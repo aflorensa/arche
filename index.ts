@@ -9,7 +9,7 @@ import {Arquetyper} from "./app/archetyper";
 
 clear();
 console.log(
-    chalk.yellow(
+    chalk.red(
         figlet.textSync('Archetyper Jabba', { horizontalLayout: 'full' })
     )
 );
