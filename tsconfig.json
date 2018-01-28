@@ -3,14 +3,29 @@
         "target": "es6",
         "module": "commonjs",
         "experimentalDecorators": true,
-        "lib": [ "es6" ],
         "noImplicitAny": false,
-        "sourceMap": false
+        "sourceMap": false,
+        "outDir": "dist",
+        "lib": [ "es6" ],
+        "allowJs" : true
     },
+    "filesGlob": [
+        "./app/**/*.ts",
+        "./test/**/*.ts",
+        "./typings/index.d.ts",
+        "./custom_typings/**/*.d.ts",
+        "./node_modules/@types/**/*.d.ts"
+    ],
     "exclude": [
         "node_modules",
-        "test/resources/sampleLanguages"
-
+        "test/resources/sampleLanguages",
+        "tmp",
+        "test"
+    ],
+    "include": [
+        "./app/rules/*.json",
+        "./index.js",
+        "./app/**/*.ts"
     ]
 }
 

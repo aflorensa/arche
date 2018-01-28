@@ -12,8 +12,13 @@ describe("Metadata", () => {
         sut = new Metadata(data);
     });
 
-    it("should clone", () => {
-        let actual = sut.getArchetypeModel();
+
+    it("should clone", (done) => {
+
+        let actual = sut.getArchetypeModel(function something(answer){
+            console.log(JSON.stringify(answer, null, '  '));
+            done();
+        });
         expect(actual).to.equal("./tmp/test-project");
     });
 
