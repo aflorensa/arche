@@ -11,7 +11,8 @@ describe("Parser", () => {
 
         beforeEach(function () {
             fse.copySync("./test/resources/fakeProjects/playframework", "./test/resources/fakeProjects/playframework_tmp");
-            sut = new Parser("./test/resources/fakeProjects/playframework_tmp/");
+            let any = JSON.parse( '{ "destination":"./test/resources/fakeProjects/", "name":"playframework_tmp" }' );
+            sut = new Parser({ "destination":"./test/resources/fakeProjects/", "name":"playframework_tmp" });
 
         });
 
@@ -48,7 +49,7 @@ describe("Parser", () => {
 
         beforeEach(function () {
             fse.copySync("./test/resources/fakeProjects/nodejs", "./test/resources/fakeProjects/node_tmp");
-            sut = new Parser("./test/resources/fakeProjects/node_tmp/");
+            sut = new Parser({ "destination":"./test/resources/fakeProjects/", "name":"node_tmp" });
         });
 
         it("should process node name", () => {
@@ -65,11 +66,11 @@ describe("Parser", () => {
         describe("with model indirection in 'to' ", () => {
             beforeEach(function () {
                 fse.copySync("./test/resources/fakeProjects/nodejs", "./test/resources/fakeProjects/node_tmp");
-                var model = {"name":"wilfred"};
-                sut = new Parser("./test/resources/fakeProjects/node_tmp/",model);
+                var model = {"varname":"wilfred", "destination":"./test/resources/fakeProjects/", "name":"node_tmp"};
+                sut = new Parser(model);
             });
             it("should parse vars with [[[]]]", () => {
-                let actual = sut.parse({"files": "package.json","from":"true" ,"to": "[[[name]]]"});
+                let actual = sut.parse({"files": "package.json","from":"true" ,"to": "[[[varname]]]"});
                 expect(actual[0]).to.equal(expected);
             });
             it("should work with non existing vars in model", () => {
@@ -81,8 +82,8 @@ describe("Parser", () => {
         describe("usages  ", () => {
             beforeEach(function () {
                 fse.copySync("./test/resources/fakeProjects/nodejs", "./test/resources/fakeProjects/node_tmp");
-                var model = {"name":"wilfred"};
-                sut = new Parser("./test/resources/fakeProjects/node_tmp/",model);
+                var model = {"varname":"wilfred", "destination":"./test/resources/fakeProjects/", "name":"node_tmp"};
+                sut = new Parser(model);
             });
             it("check array", () => {
                 let actual = sut.parse({"files": "package.json","from":["true","dependencies"] ,"to": ["parata","asdf"]});

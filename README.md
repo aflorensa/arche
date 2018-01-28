@@ -1,6 +1,6 @@
 
 Archetyper
-================================
+==========
 
 This project aims to build apps easy and fast
 
@@ -17,3 +17,4 @@ Generated new project should
 2. create project with parameterized data from seed repo
 3. add project to jenkins
 
+npm run compile && npm run start

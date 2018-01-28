@@ -13,7 +13,6 @@ describe("Archetyper", () => {
     });
 
     it("should parse", (done) => {
-        sut.createFromSeed();
 
         let actual : Array<string>  = sut.parse(data.transformations);
         expect(actual.length).to.equal(3);
