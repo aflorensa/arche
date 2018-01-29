@@ -11,3 +11,5 @@ coverage
 *.iml
 dist
 tmp
+/test/resources/fakeProjects/node_tmp/
+/test/resources/fakeProjects/playframework_tmp/
