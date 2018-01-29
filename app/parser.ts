@@ -17,14 +17,14 @@ export class Parser {
 
 
     public sanityze(options: any):any {
-        if (!Array.isArray(options.to) && options.to.match(/\[\[\[([^)]+)\]\]\]/)) {
-            let to = options.to.match(/\[\[\[([^)]+)\]\]\]/)[1];
+        let regexp=/\[\[\[([^)]+)\]\]\]/;
+        if (!Array.isArray(options.to) && options.to.match(regexp)) {
+            let to = options.to.match(regexp)[1];
             if (this.model[to]) {
-                options.to = this.model[to];
+                options.to = options.to.replace(regexp,this.model[to]);
             } else {
                 options.to=options.from;
             }
-
         }
         if (Array.isArray(options.from)) return options;
         if (options.from.constructor.name === "RegExp") return options;

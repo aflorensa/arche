@@ -20,8 +20,8 @@
     },
     {
       "files": "src/index.html",
-      "from": "\"name\": \".*\"",
-      "to": "[[[name]]]"
+      "from":"<title>(.*?)<\/title>" ,
+      "to": "<title>[[[name]]]<\/title>"
     }
   ]
 
