@@ -77,6 +77,20 @@ describe("Parser", () => {
                 let actual = sut.parse({"files": "package.json","from":"true" ,"to": "[[[nonexisting]]]"});
                 expect(actual[0]).to.equal(undefined);
             });
+
+        });
+
+        describe("parse index.html", () => {
+            beforeEach(function () {
+                fse.copySync("./test/resources/fakeProjects/nodejs", "./test/resources/fakeProjects/node_tmp");
+                sut = new Parser({"varname":"wilfred", "destination":"./test/resources/fakeProjects/", "name":"node_tmp"});
+            });
+
+            it("should parse string between html tags using regexp", () => {
+                let actual = sut.parse({"files": "index.html","from":"<title>(.*?)<\/title>" ,"to": "[[[varname]]]"});
+                expect(actual[0]).to.equal("./test/resources/fakeProjects/node_tmp/index.html");
+            });
+
         });
 
         describe("usages  ", () => {

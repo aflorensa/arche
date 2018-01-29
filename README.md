@@ -54,6 +54,15 @@ replace fixed text by var in model **note that var in model, should be between 3
           "to": "[[[name]]]"
     }
 ````
+   
+replace fixed text between HTML tags by var in model 
+````
+    {
+          "files": "src/index.html",
+          "from": "<title>(.*?)<\/title>",
+          "to": "[[[name]]]"
+    }
+````
     
 ### Model
 

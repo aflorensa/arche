@@ -20,7 +20,7 @@
     },
     {
       "files": "src/index.html",
-      "from": ["Hello World","Hello world"],
+      "from": "\"name\": \".*\"",
       "to": "[[[name]]]"
     }
   ]
