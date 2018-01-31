@@ -46,7 +46,7 @@ export class Repository {
     public add(){
 
 
-            let  command1 = "git filter-branch --prune-empty --subdirectory-filter /dist/app/"+ this.rule.name+ " master";
+            let  command1 = "git filter-branch --prune-empty --subdirectory-filter dist/app/"+ this.rule.name+ " master";
             if (shell.exec(command1).code == 0) {
                 // stuff here
             }
