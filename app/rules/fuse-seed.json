@@ -1,12 +1,17 @@
 {
-  "title":"fuse-seed",
+  "title": "fuse-seed",
   "description": "Backoffice with angular 5 and fuse style",
   "repository": {
     "url": "https:\/\/github.com\/medeasolution\/fuse-seed.git",
     "branch": "master",
     "tag": "init"
   },
-  "tags":["angularjs", "fuse", "backoffice"],
+  "tags": [
+    "angularjs",
+    "fuse",
+    "backoffice"
+  ],
+  "push": "https:\/\/github.com\/aflorensa\/",
   "transformations": [
     {
       "files": "package.json",
@@ -20,9 +25,8 @@
     },
     {
       "files": "src/index.html",
-      "from":"<title>(.*?)<\/title>" ,
+      "from": "<title>(.*?)<\/title>",
       "to": "<title>[[[name]]]<\/title>"
     }
-  ]
-
+    ]
 }

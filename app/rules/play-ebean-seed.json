@@ -6,6 +6,7 @@
     "branch": "master",
     "tag": "init"
   },
+  "push": "https:\/\/github.com\/aflorensa\/",
   "tags":["playframework"],
   "transformations": [
     {

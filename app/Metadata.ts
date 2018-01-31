@@ -25,10 +25,12 @@ export class Metadata {
         if (name=="") this.exitMierder();
         var destination = this.prompt("Carpeta destino: ("+__dirname+")",__dirname);
         if (destination=="") this.exitMierder();
-
+        var ask = this.prompt("Quieres subir el projecto a github (si o no)?: ");
+        if (ask != "si" && ask != "no") this.exitMierder();
         var json = fs.readJsonSync(options[parseInt(artifact)]['file']);
         json.name=name;
         json.destination=destination;
+        json.ask = ask;
         return json;
     }
 

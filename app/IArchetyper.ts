@@ -9,5 +9,4 @@ export interface IArchetyper {
     parse(transformations: any): Array<string>;
     compile():string;
 
-
 }
