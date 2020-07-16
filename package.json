@@ -60,7 +60,7 @@
     "fs-extra-plus": "^0.1.3",
     "github": "^2.1.0",
     "inquirer": "^1.1.0",
-    "lodash": "^4.13.1",
+    "lodash": "^4.17.19",
     "minimist": "^1.2.0",
     "preferences": "^0.2.1",
     "prompt-sync-history": "^1.0.1",
