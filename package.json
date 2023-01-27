@@ -64,7 +64,7 @@
     "minimist": "^1.2.0",
     "preferences": "^0.2.1",
     "prompt-sync-history": "^1.0.1",
-    "simple-git": "^1.40.0",
+    "simple-git": "^3.16.0",
     "touch": "^1.0.0"
   }
 }
